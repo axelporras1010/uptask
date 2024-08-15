@@ -21,11 +21,11 @@ class Email
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'f4c5f08153b512';
-        $mail->Password = '711db2b187d0b4';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@uptask.com');
         $mail->addAddress('cuentas@uptask.com', 'uptask.com');
@@ -36,7 +36,7 @@ class Email
 
         $contenido = '<html>';
         $contenido .= "<p><string> Hola "  . $this->nombre .  "</strong> Has creado tu cuenta en UpTask, solo debes confirmarla en el siguiente enlace</p>";
-        $contenido .= "<p>Presiona aqui: <a href ='http://localhost:3000/confirmar?token=" . $this->token . "'>Confirmar Cuenta</a></p>";
+        $contenido .= "<p>Presiona aqui: <a href ='". $_ENV['APP_URL'] ."/confirmar?token=" . $this->token . "'>Confirmar Cuenta</a></p>";
         $contenido .= '</html>';
 
         $mail->Body = $contenido;
@@ -48,11 +48,11 @@ class Email
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'f4c5f08153b512';
-        $mail->Password = '711db2b187d0b4';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@uptask.com');
         $mail->addAddress('cuentas@uptask.com', 'uptask.com');
@@ -63,7 +63,7 @@ class Email
 
         $contenido = '<html>';
         $contenido .= "<p><string> Hola "  . $this->nombre .  "</strong> Para recuperar tu password has click en el siguiente enlace, de lo contrario ignora este correo</p>";
-        $contenido .= "<p>Presiona aqui: <a href ='http://localhost:3000/reestablecer?token=" . $this->token . "'>Reestablecer password</a></p>";
+        $contenido .= "<p>Presiona aqui: <a href ='". $_ENV['APP_URL'] ."/reestablecer?token=" . $this->token . "'>Reestablecer password</a></p>";
         $contenido .= '</html>';
 
         $mail->Body = $contenido;
